@@ -1,20 +1,15 @@
 package my.sheshenya.samplespringdatajpa;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.regex.Matcher;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.not;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
@@ -45,7 +40,7 @@ public class SampleSpringDataJpaApplicationTests {
 		List<Foo> fooList = fooRepository.deleteByEmail("s@ggg.com");
 
 		assertEquals("number of foos", 1, fooList.size());
-//		fooList.forEach(foo -> assertEquals("Its not with s@ggg.com", "s@ggg.com", foo.getEmail()));
+		fooList.forEach(foo -> assertEquals("Its not with s@ggg.com", "s@ggg.com", foo.getEmail()));
 	}
 
 
@@ -59,10 +54,8 @@ public class SampleSpringDataJpaApplicationTests {
 		fooRepository.deleteByNameOrEmail ("First", "s@ggg.com");
 		List<Foo> fooOtherList = fooRepository.findAll();
 
-
-
 		assertEquals("number of foos are not matching 'First' or 's@ggg.com'", 1, fooOtherList.size());
-//		fooList.forEach(fruit -> assertTrue("Its not a First or with s@ggg.com", ("First".equals(fruit.getName())) || "s@ggg.com".equals(fruit.getEmail())));
+		fooOtherList.forEach(fruit -> assertTrue("Its not a First or with s@ggg.com", !("First".equals(fruit.getName()) && "s@ggg.com".equals(fruit.getEmail()))));
 	}
 
 
@@ -78,7 +71,6 @@ public class SampleSpringDataJpaApplicationTests {
 		List<Foo> fooOtherList = fooRepository.findAll();
 
 		assertEquals("number of foos are not matching 'First' or 's@ggg.com'", 1, fooOtherList.size());
-//		fooList.forEach(fruit -> assertTrue("Its not a First or with s@ggg.com", ("First".equals(fruit.getName())) || "s@ggg.com".equals(fruit.getEmail())));
+		fooOtherList.forEach(fruit -> assertTrue("Its not a First or with s@ggg.com", !("First".equals(fruit.getName()) && "s@ggg.com".equals(fruit.getEmail()))));
 	}
-
 }

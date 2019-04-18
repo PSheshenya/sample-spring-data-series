@@ -7,6 +7,8 @@ See http://static.springsource.org/spring-data/data-jpa/docs/1.1.x/reference/htm
 
 
 * ### [Spring Data REST](https://spring.io/projects/spring-data-rest)
+* ### [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+* ### [Spring Data JDBC](https://spring.io/projects/spring-data-jdbc)
 
 
 
